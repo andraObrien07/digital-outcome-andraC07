@@ -1,19 +1,55 @@
 <script>
-  import Header from '$lib/Header.svelte'
-  import BulmaExamples from '$lib/BulmaExamples.svelte'
+  import Header from "$lib/Header.svelte";
+
+  import { addClassroom, getClassrooms } from "$lib/db.js";
+
+  let classrooms = getClassrooms();
+
+  let newClassroom = {
+    roomNumber: "",
+    description: "",
+    numberOfSeats: "",
+  };
 </script>
 
 <Header />
 
 <main class="content section">
-  <h2>SvelteKit</h2>
+  {#await classrooms}
+    <p>Loading...</p>
+  {:then classrooms}
+    {#each classrooms as classroom}
+      <p>
+        {classroom.roomNumber}
+        {classroom.description}
+        {classroom.numberOfSeats}
+      </p>
+    {/each}
+  {/await}
 
-  <p>Welcome to coding with SvelteKit, a modern JavaScript framework that makes it easy to code great apps.</p>
+  <label class="label">
+    Room number: <input type="number" bind:value={newClassroom.roomNumber} />
+  </label>
 
-  <p>This template comes loaded with the <a href="https://bulma.io/documentation/">Bulma CSS framework</a>, so you can save time and focus on your project.</p>
+  <label class="label">
+    Description: <input bind:value={newClassroom.description} />
+  </label>
 
-  <p>Here's some examples of colour helpers. You can change the colours in <code>theme.scss</code></p>
-  <BulmaExamples />
+  <label class="label">
+    Number of seats: <input
+      type="number"
+      bind:value={newClassroom.numberOfSeats}
+    />
+  </label>
+
+  <button
+    class="button"
+    on:click={() => {
+      addClassroom(newClassroom);
+    }}
+  >
+    Save
+  </button>
 </main>
 
 <footer class="footer">
