@@ -1,51 +1,118 @@
 <script>
   import Header from "$lib/Header.svelte";
 
-  import { addClassroom, getClassrooms } from "$lib/db.js";
+  import { addfarm, getfarms } from "$lib/db.js";
 
-  let classrooms = getClassrooms();
+  let farms = getfarms();
 
-  let newClassroom = {
-    roomNumber: "",
-    description: "",
-    numberOfSeats: "",
+  let newfarm = {
+    nameFarm: "",
+    farmSize: "",
+    herdNames: "",
+    paddockNumber: "",
+    paddockSize: "",
+
+    paddockLandscape: {
+      steep: false,
+      stoney: false,
+      wet: false,
+    },
+    lastGrazed: "",
   };
 </script>
+
+<!-- all newfarm should be newFarm -->
 
 <Header />
 
 <main class="content section">
-  {#await classrooms}
+  {#await farms}
     <p>Loading...</p>
-  {:then classrooms}
-    {#each classrooms as classroom}
+  {:then farms}
+    {#each farms as farm}
       <p>
-        {classroom.roomNumber}
-        {classroom.description}
-        {classroom.numberOfSeats}
+        {farm.paddockNumber}
+        {farm.herd}
+        {farm.fertiliser}
       </p>
     {/each}
   {/await}
-
   <label class="label">
-    Room number: <input type="number" bind:value={newClassroom.roomNumber} />
+    Name Your Farm <input type="text" bind:value={newfarm.nameFarm} />
   </label>
 
   <label class="label">
-    Description: <input bind:value={newClassroom.description} />
-  </label>
-
-  <label class="label">
-    Number of seats: <input
+    What size is your farm in m2 <input
       type="number"
-      bind:value={newClassroom.numberOfSeats}
+      bind:value={newfarm.farmSize}
+    />
+  </label>
+
+  <label class="label">
+    Herd Names: <input type="number" bind:value={newfarm.herdNames} />
+    <button
+      class="button"
+      on:click={() => {
+        addfarm(newfarm);
+      }}
+    >
+      Save
+    </button>
+  </label>
+
+  <label class="label">
+    Paddock Number: <input type="number" bind:value={newfarm.paddockNumber} />
+  </label>
+
+  <label class="label">
+    Size of paddock in m2 <input
+      type="number"
+      bind:value={newfarm.paddockSize}
+    />
+  </label>
+
+  <label class="landscape">
+    Landscape of paddock
+    <button
+      class="button"
+      on:click={() => {
+        newfarm.paddockLandscape.steep = true;
+      }}
+      class:is-success={newfarm.paddockLandscape.steep}
+    >
+      Steep
+    </button>
+    <button
+      class="button"
+      on:click={() => {
+        newfarm.paddockLandscape.stoney = true;
+      }}
+      class:is-success={newfarm.paddockLandscape.stoney}
+    >
+      Stoney
+    </button>
+    <button
+      class="button"
+      on:click={() => {
+        newfarm.paddockLandscape.wet = true;
+      }}
+      class:is-success={newfarm.paddockLandscape.wet}
+    >
+      Wet
+    </button>
+  </label>
+
+  <label class="label">
+    When was this paddock last grazed? <input
+      type="dates"
+      bind:value={newfarm.lastGrazed}
     />
   </label>
 
   <button
     class="button"
     on:click={() => {
-      addClassroom(newClassroom);
+      addfarm(newfarm);
     }}
   >
     Save
