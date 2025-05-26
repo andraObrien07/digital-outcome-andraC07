@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore'
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { users } from 'state.svelte.js'
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,7 +22,9 @@ const app = initializeApp(firebaseConfig);
 //Initialize CLoud Firebase and get reference to service
 const db = getFirestore(app)
 
-
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app)
+const provider = new GoogleAuthProvider()
 
 // Saves a person object to the database.
 
@@ -37,4 +41,9 @@ export async function getfarms() {
     })
 
     return farms
+}
+// Signs in a user with Google authentication.
+export async function login() {
+    const result = await signInWithPopup(auth, provider)
+    console.log('User signed in:', result.user)
 }

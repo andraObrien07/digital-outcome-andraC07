@@ -1,6 +1,9 @@
 <script>
   import Header from "$lib/Header.svelte";
   import { addfarm, getfarms } from "$lib/db.js";
+  import { goto } from "$app/navigation";
+  import { user } from "$lib/state.svelte.js";
+  import YourFarms from "$lib/YourFarms.svelte";
 
   let farms = getfarms();
 
@@ -32,11 +35,11 @@
   {:then farms}
     {#each farms as farm}
       <p>
-        {farm.paddockNumber}
-        {farm.herdNames}
-        {farm.herdSize}
         {farm.nameFarm}
         {farm.farmSize}
+        {farm.herdNames}
+        {farm.herdSize}
+        {farm.paddockNumber}
         {farm.paddockSize}
         {farm.paddockLandscape}
         {farm.lastGrazed}
@@ -57,7 +60,7 @@
   </label>
 
   <label class="label">
-    Herd Names: <input type="number" bind:value={newfarm.herdNames} />
+    Herd Names: <input type="" bind:value={newfarm.herdNames} />
     <button
       class="button"
       on:click={() => {
@@ -141,11 +144,14 @@
   <button
     class="button"
     on:click={() => {
+      user.farm = newfarm;
       addfarm(newfarm);
+      goto("/yourfarm");
     }}
   >
     Create Farm
   </button>
+  <YourFarms />
 </main>
 
 <footer class="footer">

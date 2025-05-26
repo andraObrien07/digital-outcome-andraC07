@@ -1,4 +1,3 @@
 <nav>
-    <a href="/yourFarm">Your Farms</a>
+    <a href="/yourfarm">Your Farms</a>
 </nav>
-fyytugih
