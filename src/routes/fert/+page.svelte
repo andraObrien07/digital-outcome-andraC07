@@ -1,6 +1,7 @@
 <script>
     import Header from "$lib/Header.svelte";
-    import { login } from "$lib/db.js";
+    import { user } from "$lib/state.svelte.js";
+    import { logout } from "$lib/db.js";
     import { goto } from "$app/navigation";
 </script>
 
@@ -10,10 +11,10 @@
     <button
         class="button"
         on:click={() => {
-            login();
-            goto("/farms");
+            logout();
+            goto("/");
         }}
     >
-        login
+        logout
     </button>
 </main>

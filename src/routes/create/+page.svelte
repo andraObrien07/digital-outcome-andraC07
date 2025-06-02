@@ -3,7 +3,6 @@
   import { addfarm, getfarms } from "$lib/db.js";
   import { goto } from "$app/navigation";
   import { user } from "$lib/state.svelte.js";
-  import YourFarms from "$lib/YourFarms.svelte";
 
   let farms = getfarms();
 
@@ -30,7 +29,7 @@
 <Header />
 
 <main class="content section">
-  {#await farms}
+  <!-- {#await farms}
     <p>Loading...</p>
   {:then farms}
     {#each farms as farm}
@@ -47,7 +46,7 @@
         {farm.currentPlantation}
       </p>
     {/each}
-  {/await}
+  {/await} -->
   <label class="label">
     Name Your Farm <input type="text" bind:value={newfarm.nameFarm} />
   </label>
@@ -61,14 +60,6 @@
 
   <label class="label">
     Herd Names: <input type="" bind:value={newfarm.herdNames} />
-    <button
-      class="button"
-      on:click={() => {
-        addfarm(newfarm);
-      }}
-    >
-      Save
-    </button>
   </label>
 
   <label class="label">
@@ -77,6 +68,22 @@
       bind:value={newfarm.herdSize}
     />
   </label>
+
+  <button
+    class="button"
+    on:click={() => {
+      user.farms.herds = [...user.farms.herds, { ...herds }];
+      newHerd = {
+        herdNames: "null",
+        herdSize: 0,
+      };
+      //clearing the question tabs doesnt work
+      scrollTo("/herdNames");
+      //is that the right scroll to command
+    }}
+  >
+    Save Herd
+  </button>
 
   <label class="label">
     Paddock Number: <input type="number" bind:value={newfarm.paddockNumber} />
@@ -136,7 +143,7 @@
 
   <label class="label">
     What is the current plantation in this paddock? <input
-      type="dates"
+      type=""
       bind:value={newfarm.currentPlantation}
     />
   </label>
@@ -145,13 +152,31 @@
     class="button"
     on:click={() => {
       user.farm = newfarm;
-      addfarm(newfarm);
+      addfarm(user);
       goto("/yourfarm");
     }}
   >
     Create Farm
   </button>
-  <YourFarms />
+
+  <button
+    class="button"
+    on:click={() => {
+      user.farms.paddocks = [...user.farms.paddocks, { ...paddocks }];
+      newpaddock = {
+        paddockNumber: "",
+        paddockSize: 0,
+        paddockLandscape: "",
+        lastGrazed: "",
+        lastFertilised: "",
+        currentPlantation: "",
+      };
+      scrollTo("/paddockNumber");
+      //is that the right scroll to command
+    }}
+  >
+    Save Herd
+  </button>
 </main>
 
 <footer class="footer">

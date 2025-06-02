@@ -1,12 +1,13 @@
 <script>
-    import Header from "$lib/Header.svelte";
     import { user } from "$lib/state.svelte.js";
-    import { logout } from "$lib/db.js";
     import { goto } from "$app/navigation";
+    import Header from "$lib/Header.svelte";
+    import { logout } from "$lib/db.js";
 </script>
 
 <Header />
-<!-- <user /> -->
+<p>{user.farm.nameFarm}</p>
+
 <main>
     <button
         class="button"
@@ -21,19 +22,28 @@
     <button
         class="button"
         on:click={() => {
-            goto("/choicefarm");
+            goto("/herds");
         }}
     >
-        <p>{user.farm.nameFarm}</p>
-        <!-- <p>{user.uid}</p> -->
+        <p>Herd</p>
     </button>
     <button
         class="button"
         on:click={() => {
-            logout();
-            goto("/create");
+            goto("/paddock");
         }}
     >
-        Create Farm
+        <p>Paddocks</p>
     </button>
+
+    <button
+        class="button"
+        on:click={() => {
+            goto("/fert");
+        }}
+    >
+        <p>Fert</p>
+    </button>
+
+    <h1>{user.farm.paddockNumber}</h1>
 </main>

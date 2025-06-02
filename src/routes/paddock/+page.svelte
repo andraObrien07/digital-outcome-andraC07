@@ -6,7 +6,6 @@
 </script>
 
 <Header />
-<!-- <user /> -->
 <main>
     <button
         class="button"
@@ -18,22 +17,5 @@
         logout
     </button>
 
-    <button
-        class="button"
-        on:click={() => {
-            goto("/choicefarm");
-        }}
-    >
-        <p>{user.farm.nameFarm}</p>
-        <!-- <p>{user.uid}</p> -->
-    </button>
-    <button
-        class="button"
-        on:click={() => {
-            logout();
-            goto("/create");
-        }}
-    >
-        Create Farm
-    </button>
+    chosen paddock display page
 </main>

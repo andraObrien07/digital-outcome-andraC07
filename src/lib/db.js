@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { users } from 'state.svelte.js'
+import { user } from '$lib/state.svelte.js'
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,5 +45,19 @@ export async function getfarms() {
 // Signs in a user with Google authentication.
 export async function login() {
     const result = await signInWithPopup(auth, provider)
-    console.log('User signed in:', result.user)
+    user.uid = result.user.uid
+    user.email = result.user.email
+    user.displayName = result.user.displayName
+    user.photoURL = result.user.photoURL
+
+}
+
+// Signs out the current user.
+export async function logout() {
+    user.uid = null
+    user.email = null
+    user.displayName = null
+    user.photoURL = null
+
+    await signOut(auth)
 }
