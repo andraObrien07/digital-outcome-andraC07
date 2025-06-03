@@ -3,29 +3,28 @@ export const user = $state({
     email: null,
     displayName: null,
     photoURL: null,
-    farms: [
-        {
-            nameFarm: "",
-            farmSize: "",
-            herds: [
-                {
-                    herdNames: "",
-                    herdSize: "",
-                }
-            ],
-            paddocks: [
-                {
-                    paddockNumber: "",
-                    paddockSize: "",
-                    paddockLandscape: "",
-                    lastGrazed: "",
-                    lastFertilised: "",
-                    currentPlantation: "",
-                }
-            ]
 
+
+})
+
+
+export const landScape = $state({
+    nameFarm: "",
+    farmSize: "",
+    herds: [
+        {
+            herdName: "",
+            herdSize: "",
         }
     ],
-
-});
-
+    paddocks: [
+        {
+            paddockNumber: "",
+            paddockSize: "",
+            paddockLandscape: "",
+            lastGrazed: "",
+            lastFertilised: "",
+            currentPlantation: "",
+        }
+    ]
+})
