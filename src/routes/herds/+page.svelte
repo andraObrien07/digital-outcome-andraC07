@@ -3,7 +3,7 @@
     import { user } from "$lib/state.svelte.js";
     import { logout } from "$lib/db.js";
     import { goto } from "$app/navigation";
-    import { landScapes } from "$lib/state.svelte.js";
+    import { landScape } from "$lib/state.svelte.js";
 </script>
 
 <Header />
@@ -17,5 +17,9 @@
     >
         logout
     </button>
-    <p>Herd {user.farm.herdNames}</p>
+    <p>specific herds page</p>
+    <!-- 
+    {#each landScape.herds as herd}
+        <p>{herd.herdName} - {herd.herdSize}</p>
+    {/each}  -->
 </main>

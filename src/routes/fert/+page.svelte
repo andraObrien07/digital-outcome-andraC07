@@ -18,4 +18,6 @@
     >
         logout
     </button>
+
+    <p>lastFertilisation history page</p>
 </main>

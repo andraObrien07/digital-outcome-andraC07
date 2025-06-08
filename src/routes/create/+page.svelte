@@ -31,7 +31,7 @@
 
   let newPaddock = {
     paddockNumber: "",
-    paddockSize: 0,
+    paddockSize: "",
     paddockLandscape: "",
     lastGrazed: "",
     lastFertilised: "",
@@ -181,7 +181,7 @@
         landScape.paddocks = [...landScape.paddocks, { ...newPaddock }];
         newPaddock = {
           paddockNumber: "",
-          paddockSize: 0,
+          paddockSize: "",
           paddockLandscape: "",
           lastGrazed: "",
           lastFertilised: "",
@@ -205,7 +205,7 @@
     <button
       class="button"
       on:click={() => {
-        user.farm = newfarm;
+        landScape.farm = newfarm;
         addfarm(user);
         goto("/yourfarm");
       }}

@@ -3,6 +3,7 @@
     import { user } from "$lib/state.svelte.js";
     import { logout } from "$lib/db.js";
     import { goto } from "$app/navigation";
+    import { landScape } from "$lib/state.svelte.js";
 </script>
 
 <Header />
@@ -24,7 +25,7 @@
             goto("/choicefarm");
         }}
     >
-        <p>{user.farm.nameFarm}</p>
+        <p>{landScape.nameFarm}</p>
         <!-- <p>{user.uid}</p> -->
     </button>
     <button
