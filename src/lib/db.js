@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, addDoc, getDoc } from 'firebase/firestore'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { user } from '$lib/state.svelte.js'
+import { user, landScape } from '$lib/state.svelte.js'
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,30 +26,43 @@ const db = getFirestore(app)
 const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 
-// Saves a person object to the database.
-
-export async function addfarm(farm) {
-    const personDoc = await addDoc(collection(db, 'farms'), farm)
+// Saves a bests object to the database with the UID of the person as the ID.
+export async function addfarm() {
+    const personDoc = await addDoc(collection(db, 'landScape', user.uid), landScape)
 }
 
+// Gets the logged in person's bests from the database.
 export async function getfarms() {
-    let farmDocs = await getDocs(collection(db, 'farms'))
+    // Get the bests document for the given UID
+    const bestRef = doc(db, 'landScape', user.uid)
+    const bestSnap = await getDoc(bestRef)
+    if (bestSnap.exists()) {
+        // Get the bests data from the snapshot
+        const bestData = bestSnap.data()
 
-    let farms = []
-    farmDocs.forEach((farmDoc) => {
-        farms = [...farms, farmDoc.data()]
-    })
+        // and set the bests state with the data
+        landScape.uid = bestData.uid
+        // bests.olympicLifts = bestData.olympicLifts
 
-    return farms
+    } else {
+        alert('No saved bests!')
+    }
 }
+
 // Signs in a user with Google authentication.
 export async function login() {
+    // Sign in with Google
     const result = await signInWithPopup(auth, provider)
+    // Set the user state with the logged in user's information so that it can be used in the app
     user.uid = result.user.uid
     user.email = result.user.email
     user.displayName = result.user.displayName
     user.photoURL = result.user.photoURL
-
+    // Save the person state to local storage as well so that it persists across page reloads
+    let data = JSON.stringify(user)
+    localStorage.setItem('user', data)
+    // Set the bests state with the logged in user's UID
+    getfarms()
 }
 
 // Signs out the current user.
@@ -58,6 +71,9 @@ export async function logout() {
     user.email = null
     user.displayName = null
     user.photoURL = null
+    resetCharacter()
 
+    localStorage.removeItem('user')
     await signOut(auth)
 }
+

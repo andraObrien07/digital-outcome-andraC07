@@ -15,6 +15,7 @@ export const landScape = $state({
         {
             herdName: "",
             herdSize: "",
+            lameCows: "",
         }
     ],
     paddocks: [
@@ -26,5 +27,12 @@ export const landScape = $state({
             lastFertilised: "",
             currentPlantation: "",
         }
+    ],
+    fertHistory: [
+        {
+            paddockNumber: "",
+            amount: "",
+        }
     ]
+
 })

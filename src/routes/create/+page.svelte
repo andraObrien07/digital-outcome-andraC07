@@ -95,15 +95,15 @@
         landScape.herds = [...landScape.herds, { ...newHerd }];
         newHerd.herdName = "";
         newHerd.herdSize = "";
-        //clearing the question tabs doesnt work
-        // scrollTo("/herdNames");
-        //is that the right scroll to command
       }}
     >
       Save Herd
     </button>
     {#each landScape.herds as herd}
-      <p>{herd.herdName} - {herd.herdSize}</p>
+      <div class="box">
+        <p>Herd:{herd.herdName}</p>
+        <p>Size:{herd.herdSize}</p>
+      </div>
     {/each}
   </div>
 
@@ -194,14 +194,19 @@
       Save Paddock
     </button>
     {#each landScape.paddocks as paddock}
-      <p>
-        {paddock.paddockNumber} - {paddock.paddockSize}- {paddock.paddockLandscape}-
-        {paddock.lastGrazed}- {paddock.lastFertilised}- {paddock.currentPlantation}
-      </p>
+      <div class="box">
+        <p>Paddock:{paddock.paddockNumber}</p>
+        <p>Size:{paddock.paddockSize}</p>
+        <p>Landscape:{paddock.paddockLandscape}</p>
+        <p>Last Grazed:{paddock.lastGrazed}</p>
+        <p>Last Fertilised{paddock.lastFertilised}</p>
+        <p>Plantation{paddock.currentPlantation}</p>
+      </div>
     {/each}
   </div>
 
   <div class="box">
+    <!-- somehing here needs to same it to the user -->
     <button
       class="button"
       on:click={() => {

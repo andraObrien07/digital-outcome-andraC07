@@ -1,68 +1,28 @@
 <script>
     import { user } from "$lib/state.svelte.js";
+    //why is the user no used??!!!
     import { goto } from "$app/navigation";
     import Header from "$lib/Header.svelte";
     import { logout } from "$lib/db.js";
     import { landScape } from "$lib/state.svelte.js";
-    // function showHerds() {
-    //     landScape.herds.forEach((herd) => {
-    //         {
-    //             herd.herdName;
-    //         }
-    //     });
-    // }
-    let herdsVisible = false;
+    import Herds from "$lib/Herds.svelte";
+    import Paddocks from "$lib/Paddocks.svelte";
+
     let paddocksVisible = false;
+    let selectedPaddock = null;
+    let lames = [];
+
+    lames = [...lames, newLame()];
+    function newLame() {}
+    function addLame() {}
 </script>
 
 <Header />
 <p>{landScape.nameFarm}</p>
 
 <main>
-    {#if herdsVisible}
-        {#each landScape.herds as herd}
-            <button
-                class="button"
-                on:click={() => {
-                    goto("/herds");
-                }}
-            >
-                <p>{herd.herdName}</p>
-                <!-- <p>{herd.herdName} - {herd.herdSize}</p> -->
-            </button>
-        {/each}
-    {/if}
-
-    <button
-        class="button"
-        on:click={() => {
-            herdsVisible = !herdsVisible;
-        }}
-    >
-        <p>Herd</p>
-    </button>
-
-    {#if paddocksVisible}
-        {#each landScape.paddocks as paddock}
-            <button
-                class="button"
-                on:click={() => {
-                    goto("/paddock");
-                }}
-            >
-                <p>{paddock.paddockNumber}</p>
-            </button>
-        {/each}
-    {/if}
-
-    <button
-        class="button"
-        on:click={() => {
-            paddocksVisible = !paddocksVisible;
-        }}
-    >
-        <p>Paddocks</p>
-    </button>
+    <Herds />
+    <Paddocks />
 
     <button
         class="button"
@@ -72,6 +32,29 @@
     >
         <p>Fert</p>
     </button>
+
+    <div class="box">
+        <label class="label">
+            Lame Cow id <input type="number" bind:value={landScape.lameCows} />
+            <p>Lame cow {landScape.lameCows}</p>
+        </label>
+
+        <button
+            class="button"
+            on:click={() => {
+                addLame();
+                landScape.herds = [...landScape.herds, { ...newHerd }];
+                newHerd.herdName = "";
+            }}
+        >
+            Save Lame
+        </button>
+    </div>
+    {#each landScape.lameCows as lame}
+        <div class="box">
+            <p>Herd:{lame.herdName}</p>
+        </div>
+    {/each}
 
     <button
         class="button"
