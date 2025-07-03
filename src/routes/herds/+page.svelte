@@ -12,6 +12,8 @@
     function addLame() {}
 </script>
 
+//PAGE NOT NEEDED
+
 <Header />
 <main>
     <div class="box">

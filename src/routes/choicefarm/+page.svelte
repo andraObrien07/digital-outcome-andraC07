@@ -7,6 +7,7 @@
     import { landScape } from "$lib/state.svelte.js";
     import Herds from "$lib/Herds.svelte";
     import Paddocks from "$lib/Paddocks.svelte";
+    import Lame from "$lib/Lame.svelte";
 
     let paddocksVisible = false;
     let selectedPaddock = null;
@@ -39,7 +40,8 @@
             <p>Lame cow {landScape.lameCows}</p>
         </label>
 
-        <button
+        <Lame />
+        <!-- <button
             class="button"
             on:click={() => {
                 addLame();
@@ -48,7 +50,7 @@
             }}
         >
             Save Lame
-        </button>
+        </button> -->
     </div>
     {#each landScape.lameCows as lame}
         <div class="box">

@@ -8,20 +8,11 @@
   // let farms = getfarms();
 
   let newfarm = {
-    //   nameFarm: "",
-    //   farmSize: "",
-    //   herdNames: "",
-    //   herdSize: "",
-    //   paddockNumber: "",
-    //   paddockSize: "",
     paddockLandscape: {
       steep: false,
       stoney: false,
       wet: false,
     },
-    //   lastGrazed: "",
-    //   lastFertilised: "",
-    //   currentPlantation: "",
   };
 
   let newHerd = {
