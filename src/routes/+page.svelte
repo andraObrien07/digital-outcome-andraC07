@@ -2,21 +2,23 @@
     import Header from "$lib/Header.svelte";
     import { login } from "$lib/db.js";
     import { goto } from "$app/navigation";
-    import { onMount } from "svelte";
-    import { user } from "$lib/state.svelte.js";
+    // import { onMount } from "svelte";
+    // import { user } from "$lib/state.svelte.js";
+    // import { getfarms } from "$lib/db.js";
 
-    onMount(() => {
-        if (localStorage.getItem("user") && !user.uid) {
-            let data = JSON.parse(localStorage.getItem("user"));
-            console.log("Loading user from localStorage:", data);
-            user.uid = data.uid;
-            user.email = data.email;
-            user.displayName = data.displayName;
-            user.photoURL = data.photoURL;
-            console.log("User loaded from localStorage:", user);
-            // getCharacter(data.uid);
-        }
-    });
+    // onMount(() => {
+    //     if (localStorage.getItem("user") && !user.uid) {
+    //         let data = JSON.parse(localStorage.getItem("user"));
+    //         console.log("Loading user from localStorage:", data);
+    //         user.uid = data.uid;
+    //         user.email = data.email;
+    //         user.displayName = data.displayName;
+    //         user.photoURL = data.photoURL;
+    //         console.log("User loaded from localStorage:", user);
+    //         // getCharacter(data.uid);
+    //         getfarms();
+    //     }
+    // });
 </script>
 
 <Header />
