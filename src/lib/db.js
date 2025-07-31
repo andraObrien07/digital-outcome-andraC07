@@ -63,6 +63,14 @@ export async function login() {
     localStorage.setItem('user', data)
     // Set the bests state with the logged in user's UID
     getfarms()
+
+    //  Return the user info for use in UI
+    // return {
+    //     uid: result.user.uid,
+    //     email: result.user.email,
+    //     displayName: result.user.displayName,
+    //     photoURL: result.user.photoURL
+    // };
 }
 
 // Signs out the current user.
@@ -72,7 +80,6 @@ export async function logout() {
     user.displayName = null
     user.photoURL = null
     resetCharacter()
-
     localStorage.removeItem('user')
     await signOut(auth)
 }

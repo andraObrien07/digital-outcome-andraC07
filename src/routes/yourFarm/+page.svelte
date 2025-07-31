@@ -16,6 +16,7 @@
             user.displayName = data.displayName;
             user.photoURL = data.photoURL;
             console.log("User loaded from localStorage:", user);
+            localStorage.setItem("user", JSON.stringify(user));
             // getCharacter(data.uid);
             getfarms();
         }

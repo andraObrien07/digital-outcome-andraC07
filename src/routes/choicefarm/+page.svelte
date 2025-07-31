@@ -1,6 +1,5 @@
 <script>
     import { user } from "$lib/state.svelte.js";
-    //why is the user no used??!!!
     import { goto } from "$app/navigation";
     import Header from "$lib/Header.svelte";
     import { logout } from "$lib/db.js";
@@ -8,6 +7,23 @@
     import Herds from "$lib/Herds.svelte";
     import Paddocks from "$lib/Paddocks.svelte";
     import Lame from "$lib/Lame.svelte";
+    import { onMount } from "svelte";
+
+    import { getfarms } from "$lib/db.js";
+    onMount(() => {
+        if (localStorage.getItem("user") && !user.uid) {
+            let data = JSON.parse(localStorage.getItem("user"));
+            console.log("Loading user from localStorage:", data);
+            user.uid = data.uid;
+            user.email = data.email;
+            user.displayName = data.displayName;
+            user.photoURL = data.photoURL;
+            console.log("User loaded from localStorage:", user);
+            localStorage.setItem("user", JSON.stringify(user));
+            // getCharacter(data.uid);
+            getfarms();
+        }
+    });
 
     let paddocksVisible = false;
     let selectedPaddock = null;
