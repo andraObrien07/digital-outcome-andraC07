@@ -16,6 +16,7 @@
       user.displayName = data.displayName;
       user.photoURL = data.photoURL;
       console.log("User loaded from localStorage:", user);
+      localStorage.setItem("user", JSON.stringify(user));
       // getCharacter(data.uid);
       getfarms();
     }
@@ -38,7 +39,7 @@
   let newPaddock = {
     paddockNumber: "",
     paddockSize: "",
-    paddockLandscape: "",
+    // paddockLandscape: "",
     lastGrazed: "",
     lastFertilised: "",
     currentPlantation: "",
@@ -129,7 +130,7 @@
       />
     </label>
 
-    <label class="landscape">
+    <!-- <label class="landscape">
       Landscape of paddock
       <button
         class="button"
@@ -158,7 +159,7 @@
       >
         Wet
       </button>
-    </label>
+    </label> -->
 
     <label class="label">
       When was this paddock last grazed? <input
@@ -188,7 +189,7 @@
         newPaddock = {
           paddockNumber: "",
           paddockSize: "",
-          paddockLandscape: "",
+          // paddockLandscape: "",
           lastGrazed: "",
           lastFertilised: "",
           currentPlantation: "",
@@ -203,7 +204,7 @@
       <div class="box">
         <p>Paddock:{paddock.paddockNumber}</p>
         <p>Size:{paddock.paddockSize}</p>
-        <p>Landscape:{paddock.paddockLandscape}</p>
+        <!-- <p>Landscape:{paddock.paddockLandscape}</p> -->
         <p>Last Grazed:{paddock.lastGrazed}</p>
         <p>Last Fertilised{paddock.lastFertilised}</p>
         <p>Plantation{paddock.currentPlantation}</p>

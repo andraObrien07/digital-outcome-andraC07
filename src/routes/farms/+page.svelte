@@ -3,6 +3,7 @@
     import CreateNav from "$lib/CreateNav.svelte";
     import YourFarms from "$lib/YourFarms.svelte";
     import { onMount } from "svelte";
+    import { user } from "$lib/state.svelte.js";
 
     import { getfarms } from "$lib/db.js";
     onMount(() => {

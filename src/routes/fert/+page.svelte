@@ -1,7 +1,6 @@
 <script>
     import Header from "$lib/Header.svelte";
     import { user } from "$lib/state.svelte.js";
-    //why is the user no used??!!! shouldnt it be saving to the user
     import { logout } from "$lib/db.js";
     import { goto } from "$app/navigation";
     import { landScape } from "$lib/state.svelte.js";

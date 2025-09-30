@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDoc } from 'firebase/firestore'
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { getFirestore, collection, setDoc, getDoc, doc } from 'firebase/firestore'
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as fbSignOut } from 'firebase/auth'
 import { user, landScape } from '$lib/state.svelte.js'
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,29 +28,39 @@ const provider = new GoogleAuthProvider()
 
 // Saves a bests object to the database with the UID of the person as the ID.
 export async function addfarm() {
-    const personDoc = await addDoc(collection(db, 'landScape', user.uid), landScape)
+    if (!user.uid) {
+        console.error("no user logged in")
+        return
+    }
+    const personDoc = await setDoc((db, 'landScape', user.uid, 'farms'), landScape)
 }
 
 // Gets the logged in person's bests from the database.
 export async function getfarms() {
+    if (!user.uid) {
+        console.error("No user logged in!")
+        return
+    }
+
     // Get the bests document for the given UID
-    const bestRef = doc(db, 'landScape', user.uid)
-    const bestSnap = await getDoc(bestRef)
-    if (bestSnap.exists()) {
+    const landRef = doc(db, 'landScape', user.uid)
+    const landSnap = await getDoc(landRef)
+    if (landSnap.exists()) {
         // Get the bests data from the snapshot
-        const bestData = bestSnap.data()
+        const landData = landSnap.data()
 
         // and set the bests state with the data
-        landScape.uid = bestData.uid
+        landScape.uid = landData.uid
         // bests.olympicLifts = bestData.olympicLifts
 
     } else {
-        alert('No saved bests!')
+        alert('No saved landscape!')
     }
 }
 
 // Signs in a user with Google authentication.
 export async function login() {
+
     // Sign in with Google
     const result = await signInWithPopup(auth, provider)
     // Set the user state with the logged in user's information so that it can be used in the app
@@ -62,15 +72,7 @@ export async function login() {
     let data = JSON.stringify(user)
     localStorage.setItem('user', data)
     // Set the bests state with the logged in user's UID
-    getfarms()
-
-    //  Return the user info for use in UI
-    // return {
-    //     uid: result.user.uid,
-    //     email: result.user.email,
-    //     displayName: result.user.displayName,
-    //     photoURL: result.user.photoURL
-    // };
+    await getfarms()
 }
 
 // Signs out the current user.
@@ -81,6 +83,6 @@ export async function logout() {
     user.photoURL = null
     resetCharacter()
     localStorage.removeItem('user')
-    await signOut(auth)
+    await fbSignOut(auth)
 }
 

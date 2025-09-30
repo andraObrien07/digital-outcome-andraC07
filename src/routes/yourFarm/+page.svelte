@@ -8,6 +8,8 @@
 
     import { getfarms } from "$lib/db.js";
     onMount(() => {
+        // console.log("onMount called");
+
         if (localStorage.getItem("user") && !user.uid) {
             let data = JSON.parse(localStorage.getItem("user"));
             console.log("Loading user from localStorage:", data);
