@@ -32,7 +32,7 @@ export async function addfarm() {
         console.error("no user logged in")
         return
     }
-    const personDoc = await setDoc((db, 'landScape', user.uid, 'farms'), landScape)
+    const personDoc = await setDoc(doc(db, 'landScape', user.uid), landScape)
 }
 
 // Gets the logged in person's bests from the database.
@@ -51,7 +51,13 @@ export async function getfarms() {
 
         // and set the bests state with the data
         landScape.uid = landData.uid
-        // bests.olympicLifts = bestData.olympicLifts
+        console.dir(landData)
+
+        landScape.nameFarm = landData.nameFarm
+        landScape.farmSize = landData.farmSize
+        landScape.herds = landData.herds
+        landScape.paddocks = landData.paddocks
+        landScape.fertHistory = landData.fertHistory
 
     } else {
         alert('No saved landscape!')
@@ -70,6 +76,7 @@ export async function login() {
     user.photoURL = result.user.photoURL
     // Save the person state to local storage as well so that it persists across page reloads
     let data = JSON.stringify(user)
+    //saving the user data on firebase and login on lapot
     localStorage.setItem('user', data)
     // Set the bests state with the logged in user's UID
     await getfarms()
@@ -81,8 +88,8 @@ export async function logout() {
     user.email = null
     user.displayName = null
     user.photoURL = null
-    resetCharacter()
     localStorage.removeItem('user')
-    await fbSignOut(auth)
+
+    await signOut(auth)
 }
 

@@ -1,3 +1,3 @@
 <nav>
-    <a href="/create">Create Farm</a>
+    <a href="/create" class="button">Create Farm</a>
 </nav>
