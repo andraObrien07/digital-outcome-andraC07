@@ -4,24 +4,8 @@
   import { goto } from "$app/navigation";
   import { user } from "$lib/state.svelte.js";
   import { landScape } from "$lib/state.svelte.js";
-  import { onMount } from "svelte";
-
+  import UserManagement from "$lib/UserManagement.svelte";
   import { getfarms } from "$lib/db.js";
-  onMount(() => {
-    if (localStorage.getItem("user") && !user.uid) {
-      let data = JSON.parse(localStorage.getItem("user"));
-      console.log("Loading user from localStorage:", data);
-      user.uid = data.uid;
-      user.email = data.email;
-      user.displayName = data.displayName;
-      user.photoURL = data.photoURL;
-      console.log("User loaded from localStorage:", user);
-      localStorage.setItem("user", JSON.stringify(user));
-      // getCharacter(data.uid);
-      getfarms();
-    }
-  });
-  // let farms = getfarms();
 
   let newfarm = {
     paddockLandscape: {
@@ -49,26 +33,9 @@
 <!-- all newfarm should be newFarm -->
 
 <Header />
+<!-- <UserManagement /> -->
 
 <main class="content section">
-  <!-- {#await farms}
-    <p>Loading...</p>
-  {:then farms}
-    {#each farms as farm}
-      <p>
-        {farm.nameFarm}
-        {farm.farmSize}
-        {farm.herdNames}
-        {farm.herdSize}
-        {farm.paddockNumber}
-        {farm.paddockSize}
-        {farm.paddockLandscape}
-        {farm.lastGrazed}
-        {farm.lastFertilised}
-        {farm.currentPlantation}
-      </p>
-    {/each}
-  {/await} -->
   <div class="box">
     <h2>Farm</h2>
     <label class="label">
@@ -91,7 +58,7 @@
 
     <label class="label">
       What is the size of this herd? <input
-        type="dates"
+        type="number"
         bind:value={newHerd.herdSize}
       />
     </label>
@@ -218,7 +185,7 @@
       class="button"
       on:click={() => {
         landScape.farm = newfarm;
-        addfarm(user);
+        addfarm();
         goto("/yourfarm");
       }}
     >

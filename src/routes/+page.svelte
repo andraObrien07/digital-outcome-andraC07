@@ -4,10 +4,10 @@
     import { goto } from "$app/navigation";
     import { user } from "$lib/state.svelte.js";
     import { getfarms } from "$lib/db.js";
-    import UserManagement from '$lib/UserManagement'
+    import UserManagement from "$lib/UserManagement.svelte";
 </script>
 
-<UserManagement />
+<!-- <UserManagement /> -->
 
 <Header />
 
@@ -17,7 +17,7 @@
             class="nav-button"
             on:click={() => {
                 login();
-                goto("/farms");
+                goto("/yourfarm");
             }}
         >
             Login
@@ -27,7 +27,7 @@
             class="nav-button"
             on:click={() => {
                 login();
-                goto("/farms");
+                goto("/yourfarm");
             }}
         >
             Sign In
