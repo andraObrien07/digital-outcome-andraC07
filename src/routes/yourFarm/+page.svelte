@@ -36,3 +36,9 @@
     {/if}
     <CreateNav />
 </main>
+
+<style>
+    main {
+        background-color: white;
+    }
+</style>

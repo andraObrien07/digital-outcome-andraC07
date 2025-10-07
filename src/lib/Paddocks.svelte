@@ -43,3 +43,10 @@
         <p>Current Plantation:{selectedPaddock.currentPlantation}</p>
     </div>
 {/if}
+
+<style>
+    .button {
+        background-color: #ffeed2;
+        color: #1b2670;
+    }
+</style>

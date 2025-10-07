@@ -9,12 +9,12 @@
 
 <style>
   .headerr {
-    background-color: 1B2670;
+    background-color: #1b2670;
     text-align: center;
     padding: 2rem;
   }
   .title {
-    color: 85BB55;
+    color: #85bb55;
     /* font import */
   }
 </style>

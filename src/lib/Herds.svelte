@@ -36,3 +36,13 @@
         <p>Herd Size: {selectedHerd.herdSize}</p>
     </div>
 {/if}
+
+<style>
+    .button {
+        background-color: #ffeed2;
+        color: #1b2670;
+    }
+    /* .box {
+        background-color: #ffeed2;
+    } */
+</style>

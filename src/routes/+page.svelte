@@ -12,6 +12,24 @@
 <Header />
 
 <main>
+    <div class="slogan">
+        <h2>
+            <p>Take your land</p>
+            <p>from Patch to Plenty</p>
+            <p>with Green Patch</p>
+        </h2>
+    </div>
+
+    <div class="logo-center">
+        <a href="/acts"
+            ><img
+                class="logo"
+                src="/ChatGPTimage.png"
+                alt="GreenPatch Logo"
+            /></a
+        >
+    </div>
+
     <div class="nav-container">
         <button
             class="nav-button"
@@ -33,13 +51,6 @@
             Sign In
         </button>
     </div>
-    <h2>
-        <p>Take your land from Patch to Plenty with Green Patch</p>
-    </h2>
-
-    <a href="/acts"
-        ><img class="logo" src="/ChatGPTimage.png" alt="GreenPatch Logo" /></a
-    >
 </main>
 
 <style>
@@ -49,48 +60,64 @@
         display: flex;
         justify-content: flex-end; /* push to right */
         align-items: center; /* vertically center */
+        background-color: white;
     }
 
+    .slogan {
+        flex: 1;
+        text-align: right;
+        padding-right: 3rem;
+    }
+
+    /* .logo-center { */
+
+    /* flex: 1;
+        display: flex;
+        justify-content: center; */
+
     .logo {
-        /* width: 100px;
-        height: auto;
-        margin-bottom: 1rem; */
-        border-radius: 30px; /* rounded corners */
+        border-radius: 80px;
+        /* background-color: #f1e7cf; */
         padding: 2rem;
-        display: flex;
-        flex-direction: left;
-        align-items: left;
-        width: 220px; /* control the size */
-        height: 220px;
-        box-sizing: border-box;
-        display: flex;
+        width: 420px;
+        height: 420px;
+        object-fit: contain;
     }
     .nav-container {
-        height: 100vh;
-        /* display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 4rem; spacing between buttons */
+        /* height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: right;
         gap: 2rem;
         margin-right: 3rem; /* space from right edge */
+        /* display: flex;  */
+
+        flex: 1;
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
     }
 
     .nav-button {
-        width: 150px;
-        height: 150px;
+        width: 270px;
+        height: 270px;
         background-color: #85bb55; /* soft green */
         color: #1b2670;
         font-size: 2rem;
         font-weight: bold;
         border: none;
-        border-radius: 30px;
+        border-radius: 59px;
         cursor: pointer;
         text-align: center;
         line-height: 1.2;
+    }
+
+    .nav-button:hover {
+        background-color: #1b2670;
+        color: #85bb55;
+    }
+    h2 {
+        color: #1b2670;
     }
 </style>

@@ -71,3 +71,15 @@
         logout
     </button>
 </main>
+
+<style>
+    main {
+        background-color: white;
+    }
+    .box {
+        background-color: white;
+    }
+    label {
+        color: #1b2670;
+    }
+</style>
