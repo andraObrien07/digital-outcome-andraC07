@@ -14,20 +14,15 @@
 <main>
     <div class="slogan">
         <h2>
-            <p>Take your land</p>
-            <p>from Patch to Plenty</p>
+            <p>Take Your</p>
+            <p>Land From</p>
+            <p>Patch to Plenty</p>
             <p>with Green Patch</p>
         </h2>
     </div>
 
     <div class="logo-center">
-        <a href="/acts"
-            ><img
-                class="logo"
-                src="/ChatGPTimage.png"
-                alt="GreenPatch Logo"
-            /></a
-        >
+        <img class="logo" src="/ChatGPTimage.png" alt="GreenPatch Logo" />
     </div>
 
     <div class="nav-container">
@@ -54,19 +49,25 @@
 </main>
 
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
     main {
         margin: 0;
-        height: 100vh;
+        /* height: 100vh; */
         display: flex;
-        justify-content: flex-end; /* push to right */
+        /* justify-content: flex-end; push to right */
         align-items: center; /* vertically center */
         background-color: white;
+        /* align-items: center; */
     }
 
     .slogan {
         flex: 1;
-        text-align: right;
-        padding-right: 3rem;
+        text-align: left;
+        padding-left: 5rem;
+        font-family: "Crimson Text", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 3rem;
     }
 
     /* .logo-center { */
@@ -82,21 +83,21 @@
         width: 420px;
         height: 420px;
         object-fit: contain;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        /* padding-right: 8rem; */
     }
     .nav-container {
-        /* height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: right;
-        gap: 2rem;
-        margin-right: 3rem; /* space from right edge */
-        /* display: flex;  */
-
         flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 3rem;
+        padding-bottom: 4rem;
+        padding-top: 4rem;
+        padding-left: 5rem;
     }
 
     .nav-button {
@@ -104,13 +105,16 @@
         height: 270px;
         background-color: #85bb55; /* soft green */
         color: #1b2670;
-        font-size: 2rem;
+        font-size: 5rem;
         font-weight: bold;
         border: none;
         border-radius: 59px;
         cursor: pointer;
         text-align: center;
         line-height: 1.2;
+        font-family: "Crimson Text", serif;
+        font-weight: 400;
+        font-style: normal;
     }
 
     .nav-button:hover {
